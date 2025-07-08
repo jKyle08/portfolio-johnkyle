@@ -1,0 +1,32 @@
+<!-- Technical Skills Section -->
+<section id="technical" class="py-16 bg-gray-50 dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {{ with .Site.GetPage "technical" }}
+      <!-- Section heading -->
+      <h2 class="text-3xl font-bold text-center mb-4 font-heading text-gray-900 dark:text-white">{{ .Title }}</h2>
+      <p class="text-lg text-center mb-12 text-gray-600 dark:text-gray-400 italic">{{ .Params.intro }}</p>
+
+      <!-- Technical skill groups as cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range .Params.technical_groups }}
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white text-center">{{ .title }}</h3>
+          <ul class="flex flex-wrap justify-center gap-2">
+            {{ range .skills }}
+            <li class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+              {{ if in (slice "python" "js" "html5" "linux" "docker" "github" "gitlab" "react" "bootstrap") .icon }}
+              <i class="fab fa-{{ .icon }} text-blue-600 dark:text-blue-300" aria-hidden="true"></i>
+              {{ else }}
+              <i class="fas fa-{{ .icon }} text-blue-600 dark:text-blue-300" aria-hidden="true"></i>
+              {{ end }}
+              {{ .name }}
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+
+    {{ end }}
+  </div>
+</section>
