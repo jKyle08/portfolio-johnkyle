@@ -1,0 +1,74 @@
+baseURL = "https://your-domain.com/"
+languageCode = "en-us"
+title = "John Kyle O. Lastimosa"
+theme = "careercanvas"
+
+enableEmoji = true
+
+[params]
+  name = "John Kyle O. Lastimosa"
+  tagline = "Software Engineer, Web Developer"
+  location = "Santo Nino, South Cotabato, Philippines 9509"
+  description = "Full-stack developer with over 5 years of experience in building scalable web applications and supporting IT operations. Skilled in C#, .NET Framework, Java, and Spring Boot, with practical experience in microservice-based architecture. Contributed to the development of a government health information system focused on citizen registration and delivery of digital health services. Also experienced in IT infrastructure maintenance, PhilHealth claims encoding, and image/video editing."
+
+  email = "johnkyle.lastimosa99@gmail.com"
+  phone = "+639055562005"
+  image = "/images/jk.JPG"
+  og_image = "/images/jk.JPG"
+  author = "John Kyle O. Lastimosa"
+
+  linkedin_url = "https://www.linkedin.com/in/john-kyle-lastimosa-541ab2220"
+  linkedin_text = "john-kyle-lastimosa"
+  github_url = "https://github.com/jKyle08"
+  github_text = "jKyle08"
+
+  hero_description = "I specialize in building robust full-stack web applications with clean code and modern UI. Let’s build something amazing together!"
+  hero_location = "Santo Niño, South Cotabato, Philippines"
+  profile_image = "/images/jk.JPG"  # or your preferred portrait image
+
+  resume_url_en = "/files/john-kyle-lastimosa-resume.pdf"
+  resume_label = "Download Resume"
+
+  copyright = "© 2025 John Kyle O. Lastimosa. All rights reserved."
+
+  collab_tags = [
+    "Web Development", "Freelancing", "Open Source", "Tech Consulting", "Remote Work"
+  ]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[[menu.main]]
+  name = "About"
+  url = "#about"
+  weight = 1
+[[menu.main]]
+  name = "Experience"
+  url = "#experience"
+  weight = 2
+[[menu.main]]
+  name = "Skills"
+  url = "#skills"
+  weight = 3
+[[menu.main]]
+  name = "Technical"
+  url = "#technical"
+  weight = 4
+[[menu.main]]
+  name = "Contact"
+  url = "#contact"
+  weight = 5
+
+
+
+
+
+[[params.social]]
+  icon = "linkedin-in"
+  url = "https://www.linkedin.com/in/john-kyle-lastimosa"
+
+[[params.social]]
+  icon = "github"
+  url = "https://github.com/jKyle08"

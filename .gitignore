@@ -1,0 +1,17 @@
+# Hugo build output
+/public/
+/resources/_gen/
+
+# Node modules (PostCSS, Tailwind)
+node_modules/
+package-lock.json
+
+# Hugo cache
+hugo_stats.json
+
+# OS/macOS junk files
+.DS_Store
+Thumbs.db
+
+# VSCode settings (optional)
+.vscode/
