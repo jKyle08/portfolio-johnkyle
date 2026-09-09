@@ -1,6 +1,6 @@
 [build]
-  command = "echo 'Deploying static site'"
-  publish = "."
+  command = "node build.js"
+  publish = "public"
 
 [[headers]]
   for = "/*"
