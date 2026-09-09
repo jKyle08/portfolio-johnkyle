@@ -1849,6 +1849,20 @@ code {
   gap: 28px;
 }
 
+.contact-form-card,
+.contact-channel-card,
+.contact-info-col .glass-card {
+  transform: none !important;
+  will-change: auto;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.contact-form-card:hover,
+.contact-channel-card:hover,
+.contact-info-col .glass-card:hover {
+  transform: none !important;
+}
+
 .contact-form-layout {
   display: flex;
   flex-direction: column;
