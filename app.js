@@ -986,32 +986,83 @@ document.addEventListener('DOMContentLoaded', () => {
   const formFeedback = document.getElementById('formFeedback');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('cName').value;
-      const email = document.getElementById('cEmail').value;
-      const subject = document.getElementById('cSubject').value;
-      const message = document.getElementById('cMessage').value;
+      const name = document.getElementById('cName').value.trim();
+      const email = document.getElementById('cEmail').value.trim();
+      const subject = document.getElementById('cSubject').value.trim();
+      const message = document.getElementById('cMessage').value.trim();
+
+      if (!name || !email || !subject || !message) return;
 
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Sending Transmission...`;
+      submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Transmitting Message...`;
+      formFeedback.className = 'form-feedback-msg';
+      formFeedback.innerHTML = '';
 
-      setTimeout(() => {
-        submitBtn.disabled = false;
+      const formData = new FormData(contactForm);
+      const urlEncoded = new URLSearchParams(formData).toString();
+
+      let success = false;
+
+      try {
+        // 1. Primary: Netlify Forms native POST
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: urlEncoded
+        });
+
+        if (res.ok) {
+          success = true;
+        } else {
+          throw new Error('Netlify form endpoint unavailable');
+        }
+      } catch (err) {
+        try {
+          // 2. Fallback: Direct FormSubmit email dispatch
+          const fbRes = await fetch('https://formsubmit.co/ajax/johnkyle.lastimosa99@gmail.com', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              _subject: `[Portfolio Inquiry] ${subject}`,
+              message: message
+            })
+          });
+          const fbData = await fbRes.json();
+          if (fbData.success || fbRes.ok) {
+            success = true;
+          }
+        } catch (fbErr) {
+          console.warn('Form dispatch fallback notice:', fbErr);
+        }
+      }
+
+      submitBtn.disabled = false;
+      if (success) {
+        submitBtn.innerHTML = `<i class="fa-solid fa-check mr-2"></i> Transmission Received`;
+        formFeedback.className = 'form-feedback-msg success';
+        formFeedback.innerHTML = `✅ <strong>Message Delivered!</strong> Thank you, <strong>${name}</strong>. Your communication has been dispatched to <code>johnkyle.lastimosa99@gmail.com</code>. I will reply to <code>${email}</code> shortly.`;
+        sfx.playSuccess();
+        contactForm.reset();
+      } else {
         submitBtn.innerHTML = `<i class="fa-solid fa-check mr-2"></i> Message Sent`;
         formFeedback.className = 'form-feedback-msg success';
-        formFeedback.innerHTML = `✅ Thank you, <strong>${name}</strong>! Your message has been sent. I will respond to <code>${email}</code> promptly.`;
+        formFeedback.innerHTML = `✅ <strong>Message Prepared!</strong> Opening default mail client to finalize delivery to <code>johnkyle.lastimosa99@gmail.com</code>...`;
         sfx.playSuccess();
-
         const mailto = `mailto:johnkyle.lastimosa99@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
-        window.open(mailto, '_blank');
-
+        window.location.href = mailto;
         contactForm.reset();
+      }
 
-        setTimeout(() => {
-          submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane mr-2"></i> Send Message`;
-        }, 4000);
-      }, 1000);
+      setTimeout(() => {
+        submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane mr-2"></i> Send Message`;
+      }, 5000);
     });
   }
 
