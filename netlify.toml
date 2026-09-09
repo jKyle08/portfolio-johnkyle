@@ -1,9 +1,10 @@
 [build]
+  command = "node build.js"
   publish = "public"
-  command = "hugo"
 
-[build.environment]
-  HUGO_VERSION = "0.121.1" # or your preferred Hugo version
-
-[context.production.environment]
-  HUGO_ENV = "production"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
