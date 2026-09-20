@@ -721,7 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
   • <strong>AI &amp; Automation:</strong> n8n Workflow Automation, Webhooks, Cursor, GitHub Copilot, ChatGPT/OpenAI, Claude, Gemini, Antigravity<br>
   • <strong>Frontend:</strong> JavaScript (ES6+), React.js, Vue.js, Tailwind CSS, Bootstrap, HTML5/CSS3<br>
   • <strong>Databases:</strong> MS SQL Server (T-SQL), MySQL, PostgreSQL, Supabase<br>
-  • <strong>DevOps &amp; Tools:</strong> Docker, Git/GitHub, Visual Studio, VS Code, IntelliJ IDEA, Agile/Scrum
+  • <strong>DevOps &amp; Tools:</strong> Docker, Postman, Git/GitHub, Visual Studio, VS Code, IntelliJ IDEA, Agile/Scrum
 </div>`,
 
     projects: () => `
