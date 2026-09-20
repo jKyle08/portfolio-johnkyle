@@ -572,13 +572,15 @@ code {
 }
 
 .brand-monogram {
-  width: 36px;
-  height: 36px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 4px;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
   color: #040814;
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
